@@ -6,7 +6,7 @@ import { ProductModule } from './product/product.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-const config = new ConfigService()
+const config = new ConfigService();
 
 @Module({
   imports: [
