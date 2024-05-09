@@ -3,9 +3,30 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+const config = new ConfigService()
 
 @Module({
-  imports: [UserModule, ProductModule],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: ['.env'],
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: config.get('DB_HOST'),
+      port: config.get('DB_PORT'),
+      username: config.get('DB_USERNAME'),
+      password: config.get('DB_PASSWORD'),
+      database: config.get('DB_NAME'),
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+    UserModule,
+    ProductModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
