@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 const config = new ConfigService();
 
@@ -26,6 +27,7 @@ const config = new ConfigService();
     }),
     UserModule,
     ProductModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
