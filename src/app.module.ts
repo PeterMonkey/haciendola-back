@@ -12,7 +12,7 @@ const config = new ConfigService();
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env'],
+      envFilePath: '.env',
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
@@ -30,6 +30,6 @@ const config = new ConfigService();
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ConfigService],
 })
 export class AppModule {}
