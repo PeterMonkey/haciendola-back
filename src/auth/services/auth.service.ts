@@ -39,10 +39,14 @@ export class AuthService {
           token,
         };
       }
-      return {
+      // return {
+      //   ok: false,
+      //   message: 'This email is registered',
+      // };
+      throw new BadRequestException({
         ok: false,
         message: 'This email is registered',
-      };
+      });
     } catch (error) {
       throw new BadRequestException('new user could not be created', error);
     }
@@ -63,10 +67,10 @@ export class AuthService {
           throw new UnauthorizedException('Invalid credential');
         }
       } catch (error) {
-        throw new HttpException('Invalid credential', 301);
+        throw new UnauthorizedException('Invalid credential');
       }
     } else {
-      throw new HttpException('user not found', 301);
+      throw new HttpException('user not found', 401);
     }
   }
 
@@ -84,7 +88,7 @@ export class AuthService {
         token,
       };
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new UnauthorizedException(error);
     }
   }
 }
