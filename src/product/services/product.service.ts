@@ -23,7 +23,9 @@ export class ProductService {
   async getProduct() {
     try {
       const products = await this.productRepository.find();
-      return products;
+      return {
+        response: products,
+      };
     } catch (error) {
       throw new BadRequestException(error);
     }

@@ -1,0 +1,47 @@
+export const createProductResponse = {
+  succes: {
+    status: 201,
+    schema: {
+      example: {
+        handle: 'cola-glitter-23-grs',
+        title: 'COLA GLITTER 23 GRS',
+        description:
+          'Para hacer pegaduras, contornos, decorar y pintar sobre papel, papel cartón y cartulina. Posee un brillo intenso con glitter. Lavable (no mancha las ropas).',
+        sku: '60870131001',
+        grams: 100,
+        stock: 1013,
+        price: 1161,
+        compare_price: 1290,
+        barcode: '7891153003689',
+        id: '1a524174-b749-4691-aacd-e86362a74373',
+      },
+    },
+  },
+  badRequest: { status: 400, description: 'bad request' },
+};
+
+export const getProductResponse = {
+  succes: {
+    status: 200,
+    schema: {
+      example: {
+        response: [
+          {
+            id: '1a524174-b749-4691-aacd-e86362a74373',
+            handle: 'cola-glitter-23-grs',
+            title: 'COLA GLITTER 23 GRS',
+            description:
+              'Para hacer pegaduras, contornos, decorar y pintar sobre papel, papel cartón y cartulina. Posee un brillo intenso con glitter. Lavable (no mancha las ropas).',
+            sku: '60870131001',
+            grams: 100,
+            stock: 1013,
+            price: 1161,
+            compare_price: 1290,
+            barcode: '7891153003689',
+          },
+        ],
+      },
+    },
+  },
+  badRequest: { status: 400, description: 'bad request' },
+};
