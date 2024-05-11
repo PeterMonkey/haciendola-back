@@ -30,4 +30,16 @@ export class ProductService {
       throw new BadRequestException(error);
     }
   }
+
+  async updateProduct(id: string, data: CreateProductDTO) {
+    try {
+      await this.productRepository.update({ id }, data);
+      return {
+        ok: true,
+        message: `product ${id} has been updated`,
+      };
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+  }
 }
