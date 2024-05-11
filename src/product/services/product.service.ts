@@ -19,4 +19,13 @@ export class ProductService {
       throw new BadRequestException(error);
     }
   }
+
+  async getProduct() {
+    try {
+      const products = await this.productRepository.find();
+      return products;
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+  }
 }
