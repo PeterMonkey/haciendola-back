@@ -42,4 +42,16 @@ export class ProductService {
       throw new BadRequestException(error);
     }
   }
+
+  async deleteProduct(id: string) {
+    try {
+      await this.productRepository.delete(id);
+      return {
+        ok: true,
+        message: `product ${id} has been deleted`,
+      };
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+  }
 }
