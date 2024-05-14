@@ -1,3 +1,13 @@
+export const unauthorizedResponse = {
+  status: 401,
+  schema: {
+    example: {
+      message: 'Unauthorized',
+      statusCode: 401,
+    },
+  },
+};
+
 export const createProductResponse = {
   succes: {
     status: 201,
@@ -44,4 +54,32 @@ export const getProductResponse = {
     },
   },
   badRequest: { status: 400, description: 'bad request' },
+};
+
+export const updateProductResponse = {
+  succes: {
+    status: 200,
+    schema: {
+      example: {
+        ok: true,
+        message:
+          'product 1a524174-b749-4691-aacd-e86362a74373 has been updated',
+      },
+    },
+  },
+  badRequest: { status: 400, description: 'bad request for update' },
+};
+
+export const deleteProductResponse = {
+  succes: {
+    status: 200,
+    schema: {
+      example: {
+        ok: true,
+        message:
+          'product 1a524174-b749-4691-aacd-e86362a74373 has been deleted',
+      },
+    },
+  },
+  badRequest: { status: 400, description: 'bad request for delete' },
 };
