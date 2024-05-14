@@ -18,19 +18,19 @@ export class AuthService {
   ) {}
 
   async register(data: CreateUserDTO) {
-    const { name, email, password } = data;
+    const { userName, email, password } = data;
 
     try {
       const userByEmail = await this.userService.getUserByEmail(email);
       if (!userByEmail) {
         const hash = await bcrypt.hash(password, 16);
         const newUser = {
-          name,
+          userName,
           email,
           password: hash,
         };
         const payload = {
-          name,
+          userName,
           email,
         };
         await this.userService.create(newUser);
@@ -52,15 +52,15 @@ export class AuthService {
     }
   }
 
-  async validateUserPassword(email: string, password: string) {
-    const user = await this.userService.getUserByEmail(email);
+  async validateUserPassword(userName: string, password: string) {
+    const user = await this.userService.getUserByUserName(userName);
     if (user) {
       try {
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
-          const { name, email } = user;
+          const { userName, email } = user;
           return {
-            name,
+            userName,
             email,
           };
         } else {
@@ -77,10 +77,10 @@ export class AuthService {
   //login
   async login(data: LoginDTO) {
     try {
-      const { email, password } = data;
-      const validUser = await this.validateUserPassword(email, password);
+      const { userName, password } = data;
+      const validUser = await this.validateUserPassword(userName, password);
       const payload = {
-        name: validUser.name,
+        userName: validUser.userName,
         email: validUser.email,
       };
       const token = this.jwtService.sign(payload);
