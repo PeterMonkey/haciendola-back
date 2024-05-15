@@ -7,6 +7,13 @@ async function bootstrap() {
   dotenv.config({ path: '.env' });
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: ['http://localhost:4200'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
+
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Haciendola test API')
     .setVersion('1.0')
