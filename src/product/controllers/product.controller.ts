@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { ProductService } from '../services/product.service';
 import { CreateProductDTO } from '../dto/createProduct.dto';
-import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import {
   createProductResponse,
   getProductResponse,
@@ -27,6 +27,7 @@ export class ProductController {
 
   @Post('new')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiResponse(createProductResponse.succes)
   @ApiResponse(createProductResponse.badRequest)
   @ApiResponse(unauthorizedResponse)
@@ -36,6 +37,7 @@ export class ProductController {
 
   @Get('/get-products')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiResponse(getProductResponse.succes)
   @ApiResponse(getProductResponse.badRequest)
   @ApiResponse(unauthorizedResponse)
@@ -45,6 +47,7 @@ export class ProductController {
 
   @Put('/update/:id')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiResponse(updateProductResponse.succes)
   @ApiResponse(updateProductResponse.badRequest)
   @ApiResponse(unauthorizedResponse)
@@ -54,6 +57,7 @@ export class ProductController {
 
   @Delete('/delete/:id')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiResponse(deleteProductResponse.succes)
   @ApiResponse(deleteProductResponse.badRequest)
   @ApiResponse(unauthorizedResponse)
